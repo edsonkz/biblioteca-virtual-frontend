@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import Header from "./Header";
 
@@ -20,9 +21,7 @@ const UserHome = () => {
         {books.length > 0 ? (
           books.map((book) => (
             <div key={book.id}>
-              <a href={`http://localhost:3001/api/epubs/${book.filename}`}>
-                {book.name}
-              </a>
+              <Link to={`/books/${book.id}`}>{book.name}</Link>
             </div>
           ))
         ) : (

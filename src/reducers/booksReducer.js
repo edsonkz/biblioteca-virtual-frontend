@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import bookServices from "../services/book";
+import readBookServices from "../services/readBook";
 
 const bookSlice = createSlice({
   name: "books",
@@ -21,6 +22,16 @@ export const initializeBooks = () => {
     try {
       const books = await bookServices.getAll();
       dispatch(setBooks(books));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+export const createReadBook = (userId, bookId) => {
+  return async (dispatch) => {
+    try {
+      await readBookServices.updateStatus(userId, bookId);
     } catch (error) {
       console.error(error);
     }

@@ -1,10 +1,12 @@
 import LoginForm from "./components/LoginForm";
+import Book from "./components/Book";
 import Notification from "./components/Notification";
 import { saveUser } from "./reducers/userReducer";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UserHome from "./components/UserHome";
+import AdminHome from "./components/AdminHome";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,7 +28,19 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={user === null ? <LoginForm /> : <UserHome />}
+            element={
+              user === null ? (
+                <LoginForm />
+              ) : user.isAdmin ? (
+                <AdminHome />
+              ) : (
+                <UserHome />
+              )
+            }
+          />
+          <Route
+            path="/books/:id"
+            element={user === null ? <LoginForm /> : <Book />}
           />
         </Routes>
       </Router>
