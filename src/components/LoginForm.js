@@ -1,13 +1,23 @@
 import { Form, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import { loginUser } from "../reducers/userReducer";
 import "./LoginForm.style.css";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    console.log(location.pathname);
+    if (location.pathname !== "/") {
+      navigate("/");
+    }
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -25,7 +35,8 @@ const LoginForm = () => {
           </p>
           <Form.Label htmlFor="email">Email</Form.Label>
           <Form.Control
-            type="text"
+            required
+            type="email"
             name="email"
             value={email}
             className="mt-1"
@@ -35,6 +46,7 @@ const LoginForm = () => {
         <Form.Group className="Auth-form-content">
           <Form.Label htmlFor="password">Senha</Form.Label>
           <Form.Control
+            required
             type="password"
             name="passwrod"
             value={password}

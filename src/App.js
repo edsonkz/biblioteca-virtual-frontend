@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UserHome from "./components/UserHome";
 import AdminHome from "./components/AdminHome";
+import CreateResources from "./components/CreateResources";
 
 function App() {
   const dispatch = useDispatch();
@@ -16,7 +17,6 @@ function App() {
     const loggedUserJSON = window.localStorage.getItem("loggedUser");
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON);
-      console.log(user);
       dispatch(saveUser(user));
     }
   }, []);
@@ -40,7 +40,27 @@ function App() {
           />
           <Route
             path="/books/:id"
-            element={user === null ? <LoginForm /> : <Book />}
+            element={
+              user === null ? (
+                <LoginForm />
+              ) : user.isAdmin ? (
+                <AdminHome />
+              ) : (
+                <Book />
+              )
+            }
+          />
+          <Route
+            path="/admin/create"
+            element={
+              user === null ? (
+                <LoginForm />
+              ) : user.isAdmin ? (
+                <CreateResources />
+              ) : (
+                <UserHome />
+              )
+            }
           />
         </Routes>
       </Router>

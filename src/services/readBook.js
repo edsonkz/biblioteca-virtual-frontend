@@ -7,14 +7,19 @@ const create = (userId, bookId) => {
   return request.then((response) => response.data);
 };
 
+const findAll = () => {
+  const request = axios.get(baseUrl);
+  return request.then((response) => response.data);
+};
+
 const updateStatus = (userId, bookId) => {
   const request = axios.put(baseUrl, { userId, bookId });
   return request.then((response) => response.data);
 };
 
 const findUsersAndBooks = () => {
-  const request = axios.get(baseUrl);
+  const request = axios.get(baseUrl + "/all");
   return request.then((response) => response.data);
 };
 
-export default { create, updateStatus, findUsersAndBooks };
+export default { create, updateStatus, findUsersAndBooks, findAll };

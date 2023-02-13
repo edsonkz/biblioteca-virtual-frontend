@@ -12,4 +12,17 @@ const getOne = (id) => {
   return request.then((response) => response.data);
 };
 
-export default { getAll, getOne };
+const create = (name, file) => {
+  const request = axios.post(
+    baseUrl,
+    { name, book: file },
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return request.then((response) => response.data);
+};
+
+export default { getAll, getOne, create };
