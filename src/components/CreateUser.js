@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import userServices from "../services/user";
 import { setNotification } from "../reducers/notificationReducer";
+import "./CreateResources.style.css";
 
 const CreateUser = () => {
   const dispatch = useDispatch();
@@ -24,15 +25,13 @@ const CreateUser = () => {
       setGrade("");
     } catch (error) {
       console.error(error);
-      dispatch(
-        setNotification("Ocorreu um erro ao tentar criar o estudante", 2, true)
-      );
+      dispatch(setNotification("O email precisa ser único.", 2, true));
     }
   };
 
   return (
     <div className="container">
-      <Form onSubmit={handleCreateUser}>
+      <Form onSubmit={handleCreateUser} className="Create-box">
         <h3 className="text-center mt-2">Crie um Novo Estudante</h3>
         <Form.Group>
           <Form.Label htmlFor="email">Email</Form.Label>
@@ -43,6 +42,10 @@ const CreateUser = () => {
             value={email}
             className="mt-1"
             onChange={(e) => setEmail(e.target.value)}
+            onInvalid={(F) =>
+              F.target.setCustomValidity("É necessário preencher esse campo.")
+            }
+            onInput={(F) => F.target.setCustomValidity("")}
           />
         </Form.Group>
         <Form.Group>
@@ -54,6 +57,10 @@ const CreateUser = () => {
             value={name}
             className="mt-1"
             onChange={(e) => setName(e.target.value)}
+            onInvalid={(F) =>
+              F.target.setCustomValidity("É necessário preencher esse campo.")
+            }
+            onInput={(F) => F.target.setCustomValidity("")}
           />
         </Form.Group>
         <Form.Group>
@@ -65,6 +72,10 @@ const CreateUser = () => {
             value={education}
             className="mt-1"
             onChange={(e) => setEducation(e.target.value)}
+            onInvalid={(F) =>
+              F.target.setCustomValidity("É necessário preencher esse campo.")
+            }
+            onInput={(F) => F.target.setCustomValidity("")}
           />
         </Form.Group>
         <Form.Group>
@@ -76,6 +87,10 @@ const CreateUser = () => {
             value={grade}
             className="mt-1"
             onChange={(e) => setGrade(e.target.value)}
+            onInvalid={(F) =>
+              F.target.setCustomValidity("É necessário preencher esse campo.")
+            }
+            onInput={(F) => F.target.setCustomValidity("")}
           />
         </Form.Group>
         <Form.Group>
@@ -83,10 +98,14 @@ const CreateUser = () => {
           <Form.Control
             required
             type="password"
-            name="passwrod"
+            name="password"
             value={password}
             className="mt-1"
             onChange={(e) => setPassword(e.target.value)}
+            onInvalid={(F) =>
+              F.target.setCustomValidity("É necessário preencher esse campo.")
+            }
+            onInput={(F) => F.target.setCustomValidity("")}
           />
         </Form.Group>
         <div>

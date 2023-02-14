@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import bookServices from "../services/book";
 import { setNotification } from "../reducers/notificationReducer";
+import "./CreateResources.style.css";
 
 const CreateBook = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const CreateBook = () => {
 
   return (
     <div className="container">
-      <Form onSubmit={handleCreateUser}>
+      <Form onSubmit={handleCreateUser} className="Create-box">
         <h3 className="text-center mt-2">Adicionar um novo Livro</h3>
         <Form.Group>
           <Form.Label htmlFor="name">Nome</Form.Label>
@@ -37,6 +38,10 @@ const CreateBook = () => {
             value={name}
             className="mt-1"
             onChange={(e) => setName(e.target.value)}
+            onInvalid={(F) =>
+              F.target.setCustomValidity("É necessário preencher esse campo.")
+            }
+            onInput={(F) => F.target.setCustomValidity("")}
           />
         </Form.Group>
         <Form.Group>
@@ -47,6 +52,10 @@ const CreateBook = () => {
             name="file"
             className="mt-1"
             onChange={(e) => setFile(e.target.files[0])}
+            onInvalid={(F) =>
+              F.target.setCustomValidity("É necessário preencher esse campo.")
+            }
+            onInput={(F) => F.target.setCustomValidity("")}
           />
         </Form.Group>
         <div>

@@ -6,8 +6,11 @@ import _ from "lodash";
 import moment from "moment/moment";
 import Chart from "chart.js/auto";
 import { Bar } from "react-chartjs-2";
+import { Table } from "react-bootstrap";
 
 import Header from "./Header";
+
+import "./Table.style.css";
 
 const AdminHome = () => {
   const navigate = useNavigate();
@@ -61,16 +64,26 @@ const AdminHome = () => {
   const studentsRendered = () =>
     Object.keys(students).map((key) => {
       return (
-        <div key={key}>
-          <h4>{key}</h4>
-          {students[key].map((book) => (
-            <div key={book.bookId}>
-              <p>
-                <strong>{book.bookname}</strong> -{" "}
-                {book.finished ? "leitura finalizada" : "leitura em andamento"}
-              </p>
-            </div>
-          ))}
+        <div key={key} className="Student-info">
+          <h4 className="Student-name">{key}</h4>
+          <Table striped>
+            <thead>
+              <tr>
+                <th>Id Livro</th>
+                <th>Livros</th>
+                <th>Progresso</th>
+              </tr>
+            </thead>
+            <tbody>
+              {students[key].map((book) => (
+                <tr key={book.bookId}>
+                  <td>{book.bookId}</td>
+                  <td>{book.bookname}</td>
+                  <td>{book.finished ? "finalizado" : "em andamento"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         </div>
       );
     });
@@ -78,37 +91,12 @@ const AdminHome = () => {
   return (
     <div>
       <Header />
-      <div>
-        <h3>Alunos</h3>
+      <div style={{ marginTop: "1rem" }}>
+        <h3>Livros lidos por Alunos</h3>
         {students !== null ? (
           studentsRendered()
         ) : (
           <p>Nenhum aluno encontrado.</p>
-        )}
-      </div>
-      <div>
-        <h3>Gráficos de Livros Lidos por Dia</h3>
-        {datasets !== null ? (
-          <div className="container">
-            <Bar
-              data={datasets}
-              options={{
-                title: {
-                  display: true,
-                  text: "Livros lidos por Dia",
-                  fontSize: 20,
-                },
-                legend: {
-                  display: true,
-                  position: "right",
-                },
-              }}
-            />
-          </div>
-        ) : (
-          <div>
-            <p>Sem informação suficiente para gerar um gráfico.</p>
-          </div>
         )}
       </div>
     </div>

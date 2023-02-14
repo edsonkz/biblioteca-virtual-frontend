@@ -7,7 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import UserHome from "./components/UserHome";
 import AdminHome from "./components/AdminHome";
+import CreateAdminForm from "./components/CreateAdminForm";
 import CreateResources from "./components/CreateResources";
+import GraphPage from "./components/GraphPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -57,6 +59,30 @@ function App() {
                 <LoginForm />
               ) : user.isAdmin ? (
                 <CreateResources />
+              ) : (
+                <UserHome />
+              )
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              user === null ? (
+                <CreateAdminForm />
+              ) : user.isAdmin ? (
+                <AdminHome />
+              ) : (
+                <UserHome />
+              )
+            }
+          />
+          <Route
+            path="/graph"
+            element={
+              user === null ? (
+                <LoginForm />
+              ) : user.isAdmin ? (
+                <GraphPage />
               ) : (
                 <UserHome />
               )

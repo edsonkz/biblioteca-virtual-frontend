@@ -24,17 +24,24 @@ const Header = () => {
             </Link>
           </li>
           {user.isAdmin ? (
-            <li className="nav">
-              <Link className="linkTo" to="/admin/create">
-                Adicionar Usuários/ Livros
-              </Link>
-            </li>
+            <>
+              <li className="nav">
+                <Link className="linkTo" to="/admin/create">
+                  Adicionar Usuários/ Livros
+                </Link>
+              </li>
+              <li className="nav">
+                <Link className="linkTo" to="/graph">
+                  Visualizar Gráfico
+                </Link>
+              </li>
+            </>
           ) : (
             <></>
           )}
 
           <li className="nav">
-            Seja bem vindo, {user.name}{" "}
+            Seja bem vindo, {user.isAdmin ? "administrador" : ""} {user.name}{" "}
             <Button onClick={handleLogout}>logout</Button>
           </li>
         </ul>
