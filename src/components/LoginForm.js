@@ -1,7 +1,7 @@
 import { Form, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { loginUser } from "../reducers/userReducer";
 import "./LoginForm.style.css";
 
@@ -66,6 +66,12 @@ const LoginForm = () => {
           <Button type="submit" className="Button-submit">
             Entrar
           </Button>
+          <p className="text-center mt-2 text-decoration-none">
+            Deseja criar um administrador?{"  "}
+            <Link to="/admin" className="Link-administrator">
+              Clique Aqui
+            </Link>
+          </p>
         </div>
       </Form>
     </div>

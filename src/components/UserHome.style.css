@@ -1,0 +1,31 @@
+.books {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.book {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin: 2rem;
+}
+
+.book:hover {
+  opacity: 60%;
+  transition: 0.2s;
+}
+
+.book-area {
+  text-decoration: none;
+}
+
+.book-title {
+  padding: 1rem;
+  color: black;
+  font-weight: bold;
+}

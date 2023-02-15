@@ -2,7 +2,7 @@ import { Form, Button } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setNotification } from "../reducers/notificationReducer";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import userServices from "../services/user";
 import "./LoginForm.style.css";
 
@@ -99,6 +99,12 @@ const CreateAdminForm = () => {
             Criar
           </Button>
         </div>
+        <p className="text-center mt-2 text-decoration-none">
+          Já possui um usuário?{"  "}
+          <Link to="/" className="Link-administrator">
+            Clique Aqui
+          </Link>
+        </p>
       </Form>
     </div>
   );

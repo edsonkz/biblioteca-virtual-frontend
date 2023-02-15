@@ -49,6 +49,10 @@
   width: 19rem;
 }
 
+.Link-administrator {
+  text-decoration: none;
+}
+
 label {
   font-size: 14px;
   font-weight: 600;
