@@ -24,9 +24,29 @@
 
 .pageNumber {
   font-size: 1rem;
+  margin-top: 1rem;
   margin-bottom: 0.5rem;
+}
+
+.page-selector {
+  font-size: 1rem;
+  width: 3.5rem;
 }
 
 .return-Button {
   margin-bottom: 0.5rem;
+}
+
+.book-show {
+  display: flex;
+}
+
+.button-arrow:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.button-arrow:nth-child(3) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }

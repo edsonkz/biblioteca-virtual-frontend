@@ -24,11 +24,12 @@ const AdminHome = () => {
   useEffect(() => {
     const getStudents = async () => {
       const data = await readBookServices.findUsersAndBooks();
-
-      const studentBooks = _.mapValues(_.groupBy(data, "username"), (clist) =>
-        clist.map((student) => _.omit(student, "username"))
-      );
-      setStudents(studentBooks);
+      if (data.length > 0) {
+        const studentBooks = _.mapValues(_.groupBy(data, "username"), (clist) =>
+          clist.map((student) => _.omit(student, "username"))
+        );
+        setStudents(studentBooks);
+      }
     };
 
     const getBookInfo = async () => {
@@ -96,7 +97,7 @@ const AdminHome = () => {
         {students !== null ? (
           studentsRendered()
         ) : (
-          <p>Nenhum aluno encontrado.</p>
+          <p>Nenhum aluno lendo livros encontrado.</p>
         )}
       </div>
     </div>
